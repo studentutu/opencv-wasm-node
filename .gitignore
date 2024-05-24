@@ -107,20 +107,6 @@ dist
 # OpenCV-Wasm
 #
 
-# OpenCV Binaries
-/opencv.wasm
-/opencv-bin.js
-
-# Generated Types
-/types/opencv.d.ts
-/types/opencv.ts
-
-# OpenCV-Wasm Node
-/opencv.js
-
-# OpenCV-Wasm Deno
-/opencv-deno.js
-
 # Test files
 /examples/temp.png
 
