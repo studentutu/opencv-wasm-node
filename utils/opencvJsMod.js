@@ -35,11 +35,14 @@ const openCvJsNew = openCvJs.replace(/var wasmBinaryFile="(.*?)";/, 'var wasmBin
 let openCvJsNode = openCvJsNew;
 
 openCvJsNode =
-`
-let Module = {};
-let opencvWasmBinaryFile = './opencv.wasm';
+`(function() {
+    let opencvWasmBinaryFile = './opencv.wasm';
 
-${openCvJsNode}`;
+    return ${openCvJsNode};
+})();`;
+
+openCvJsNode = openCvJsNode.replace(/if \(typeof Module === 'undefined'\)(.*)return cv\(Module\)/gms, 'return cv');
+
 fs.writeFileSync(path.join(__dirname, './build_wasm/bin/opencv.js'), openCvJsNode, {encoding: 'utf8'});
 console.log('Updated opencv.js');
 
