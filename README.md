@@ -85,7 +85,11 @@ function getBinaryPromise(wasmBinary) {
 }
 
 getBinaryPromise('./opencv.wasm').then((wasmBinary) => {
-  cv = cv({ wasmBinary });
+  const Module = {
+    wasmBinary,
+  };
+
+  cv = cv(Module);
 });
 </script> 
 ```

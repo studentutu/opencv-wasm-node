@@ -1,4 +1,7 @@
-const { cv, cvTranslateError } = require('../');
+const { cv: cvLoader, cvTranslateError } = require('../');
+const Module = {};
+const cv = cvLoader(Module);
+
 const fs = require('fs');
 const { assert } = require('chai');
 const { execSync } = require("child_process");
