@@ -17,7 +17,7 @@
             root.cv = factory();
         } else if (typeof importScripts === 'function') {
             // Web worker
-            root.cv = factory();
+            root.cv = factory;
         } else {
             // Other shells, e.g. d8
             root.cv = factory();
@@ -377,8 +377,8 @@
                     }
                     var wasmMemory;
                     var wasmTable = new WebAssembly.Table({
-                        "initial": 14591,
-                        "maximum": 14591,
+                        "initial": 13920,
+                        "maximum": 13920,
                         "element": "anyfunc"
                     });
                     var ABORT = false;
@@ -635,9 +635,9 @@
                         Module["HEAPF32"] = HEAPF32 = new Float32Array(buf);
                         Module["HEAPF64"] = HEAPF64 = new Float64Array(buf)
                     }
-                    var STACK_BASE = 1328720,
-                        DYNAMIC_BASE = 6571600,
-                        DYNAMICTOP_PTR = 1328528;
+                    var STACK_BASE = 1220256,
+                        DYNAMIC_BASE = 6463136,
+                        DYNAMICTOP_PTR = 1220064;
                     var INITIAL_TOTAL_MEMORY = Module["TOTAL_MEMORY"] || 134217728;
                     if (Module["wasmMemory"]) {
                         wasmMemory = Module["wasmMemory"]
@@ -878,7 +878,7 @@
                             globalCtors()
                         }
                     });
-                    var tempDoublePtr = 1328704;
+                    var tempDoublePtr = 1220240;
 
                     function _emscripten_set_main_loop_timing(mode, value) {
                         Browser.mainLoop.timingMode = mode;
@@ -6307,25 +6307,6 @@
                         abort()
                     }
 
-                    function _emscripten_get_now_is_monotonic() {
-                        return 0 || ENVIRONMENT_IS_NODE || typeof dateNow !== "undefined" || typeof performance === "object" && performance && typeof performance["now"] === "function"
-                    }
-
-                    function _clock_gettime(clk_id, tp) {
-                        var now;
-                        if (clk_id === 0) {
-                            now = Date.now()
-                        } else if (clk_id === 1 && _emscripten_get_now_is_monotonic()) {
-                            now = _emscripten_get_now()
-                        } else {
-                            ___setErrNo(28);
-                            return -1
-                        }
-                        HEAP32[tp >> 2] = now / 1e3 | 0;
-                        HEAP32[tp + 4 >> 2] = now % 1e3 * 1e3 * 1e3 | 0;
-                        return 0
-                    }
-
                     function _emscripten_get_heap_size() {
                         return HEAP8.length
                     }
@@ -6378,6 +6359,13 @@
                         return _getenv.ret
                     }
 
+                    function _gettimeofday(ptr) {
+                        var now = Date.now();
+                        HEAP32[ptr >> 2] = now / 1e3 | 0;
+                        HEAP32[ptr + 4 >> 2] = now % 1e3 * 1e3 | 0;
+                        return 0
+                    }
+
                     function _llvm_exp2_f32(x) {
                         return Math.pow(2, x)
                     }
@@ -6423,6 +6411,10 @@
                     function _pthread_mutexattr_init() {}
 
                     function _pthread_mutexattr_settype() {}
+
+                    function _sched_yield() {
+                        return 0
+                    }
 
                     function __isLeapYear(year) {
                         return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
@@ -7091,11 +7083,9 @@
                         "__memory_base": 1024,
                         "__table_base": 0,
                         "_abort": _abort,
-                        "_clock_gettime": _clock_gettime,
                         "_embind_repr": _embind_repr,
                         "_emscripten_get_heap_size": _emscripten_get_heap_size,
                         "_emscripten_get_now": _emscripten_get_now,
-                        "_emscripten_get_now_is_monotonic": _emscripten_get_now_is_monotonic,
                         "_emscripten_memcpy_big": _emscripten_memcpy_big,
                         "_emscripten_resize_heap": _emscripten_resize_heap,
                         "_emscripten_set_main_loop": _emscripten_set_main_loop,
@@ -7105,6 +7095,7 @@
                         "_fd_seek": _fd_seek,
                         "_fd_write": _fd_write,
                         "_getenv": _getenv,
+                        "_gettimeofday": _gettimeofday,
                         "_llvm_exp2_f32": _llvm_exp2_f32,
                         "_llvm_exp2_f64": _llvm_exp2_f64,
                         "_llvm_log10_f32": _llvm_log10_f32,
@@ -7115,6 +7106,7 @@
                         "_pthread_mutexattr_destroy": _pthread_mutexattr_destroy,
                         "_pthread_mutexattr_init": _pthread_mutexattr_init,
                         "_pthread_mutexattr_settype": _pthread_mutexattr_settype,
+                        "_sched_yield": _sched_yield,
                         "_strftime": _strftime,
                         "_strftime_l": _strftime_l,
                         "_sysconf": _sysconf,
@@ -7195,16 +7187,11 @@
                     var _emscripten_replace_memory = Module["_emscripten_replace_memory"] = asm["_emscripten_replace_memory"];
                     var _free = Module["_free"] = asm["_free"];
                     var _llvm_bswap_i32 = Module["_llvm_bswap_i32"] = asm["_llvm_bswap_i32"];
-                    var _llvm_maxnum_f64 = Module["_llvm_maxnum_f64"] = asm["_llvm_maxnum_f64"];
-                    var _llvm_nearbyint_f32 = Module["_llvm_nearbyint_f32"] = asm["_llvm_nearbyint_f32"];
-                    var _llvm_round_f32 = Module["_llvm_round_f32"] = asm["_llvm_round_f32"];
-                    var _llvm_round_f64 = Module["_llvm_round_f64"] = asm["_llvm_round_f64"];
                     var _malloc = Module["_malloc"] = asm["_malloc"];
                     var _memcpy = Module["_memcpy"] = asm["_memcpy"];
                     var _memmove = Module["_memmove"] = asm["_memmove"];
                     var _memset = Module["_memset"] = asm["_memset"];
                     var _rintf = Module["_rintf"] = asm["_rintf"];
-                    var _roundf = Module["_roundf"] = asm["_roundf"];
                     var establishStackSpace = Module["establishStackSpace"] = asm["establishStackSpace"];
                     var globalCtors = Module["globalCtors"] = asm["globalCtors"];
                     var stackAlloc = Module["stackAlloc"] = asm["stackAlloc"];
@@ -7253,7 +7240,6 @@
                     var dynCall_iiidiiii = Module["dynCall_iiidiiii"] = asm["dynCall_iiidiiii"];
                     var dynCall_iiidiiiii = Module["dynCall_iiidiiiii"] = asm["dynCall_iiidiiiii"];
                     var dynCall_iiif = Module["dynCall_iiif"] = asm["dynCall_iiif"];
-                    var dynCall_iiifff = Module["dynCall_iiifff"] = asm["dynCall_iiifff"];
                     var dynCall_iiifi = Module["dynCall_iiifi"] = asm["dynCall_iiifi"];
                     var dynCall_iiifii = Module["dynCall_iiifii"] = asm["dynCall_iiifii"];
                     var dynCall_iiifiii = Module["dynCall_iiifiii"] = asm["dynCall_iiifiii"];
@@ -7295,20 +7281,13 @@
                     var dynCall_iiiiiiii = Module["dynCall_iiiiiiii"] = asm["dynCall_iiiiiiii"];
                     var dynCall_iiiiiiiididiii = Module["dynCall_iiiiiiiididiii"] = asm["dynCall_iiiiiiiididiii"];
                     var dynCall_iiiiiiiii = Module["dynCall_iiiiiiiii"] = asm["dynCall_iiiiiiiii"];
-                    var dynCall_iiiiiiiiif = Module["dynCall_iiiiiiiiif"] = asm["dynCall_iiiiiiiiif"];
-                    var dynCall_iiiiiiiiifd = Module["dynCall_iiiiiiiiifd"] = asm["dynCall_iiiiiiiiifd"];
-                    var dynCall_iiiiiiiiifdi = Module["dynCall_iiiiiiiiifdi"] = asm["dynCall_iiiiiiiiifdi"];
-                    var dynCall_iiiiiiiiifdii = Module["dynCall_iiiiiiiiifdii"] = asm["dynCall_iiiiiiiiifdii"];
                     var dynCall_iiiiiiiiii = Module["dynCall_iiiiiiiiii"] = asm["dynCall_iiiiiiiiii"];
-                    var dynCall_iiiiiiiiiif = Module["dynCall_iiiiiiiiiif"] = asm["dynCall_iiiiiiiiiif"];
-                    var dynCall_iiiiiiiiiifd = Module["dynCall_iiiiiiiiiifd"] = asm["dynCall_iiiiiiiiiifd"];
-                    var dynCall_iiiiiiiiiifdi = Module["dynCall_iiiiiiiiiifdi"] = asm["dynCall_iiiiiiiiiifdi"];
-                    var dynCall_iiiiiiiiiifdii = Module["dynCall_iiiiiiiiiifdii"] = asm["dynCall_iiiiiiiiiifdii"];
                     var dynCall_iiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiii"] = asm["dynCall_iiiiiiiiiiiii"];
                     var dynCall_iiiiij = Module["dynCall_iiiiij"] = asm["dynCall_iiiiij"];
                     var dynCall_ji = Module["dynCall_ji"] = asm["dynCall_ji"];
                     var dynCall_jii = Module["dynCall_jii"] = asm["dynCall_jii"];
                     var dynCall_jiii = Module["dynCall_jiii"] = asm["dynCall_jiii"];
+                    var dynCall_jiiii = Module["dynCall_jiiii"] = asm["dynCall_jiiii"];
                     var dynCall_jiji = Module["dynCall_jiji"] = asm["dynCall_jiji"];
                     var dynCall_v = Module["dynCall_v"] = asm["dynCall_v"];
                     var dynCall_vdii = Module["dynCall_vdii"] = asm["dynCall_vdii"];
@@ -7348,7 +7327,6 @@
                     var dynCall_viidiiii = Module["dynCall_viidiiii"] = asm["dynCall_viidiiii"];
                     var dynCall_viidiiiii = Module["dynCall_viidiiiii"] = asm["dynCall_viidiiiii"];
                     var dynCall_viif = Module["dynCall_viif"] = asm["dynCall_viif"];
-                    var dynCall_viifff = Module["dynCall_viifff"] = asm["dynCall_viifff"];
                     var dynCall_viifi = Module["dynCall_viifi"] = asm["dynCall_viifi"];
                     var dynCall_viifii = Module["dynCall_viifii"] = asm["dynCall_viifii"];
                     var dynCall_viifiii = Module["dynCall_viifiii"] = asm["dynCall_viifiii"];
@@ -7460,7 +7438,6 @@
                     var dynCall_viiiiiiiddi = Module["dynCall_viiiiiiiddi"] = asm["dynCall_viiiiiiiddi"];
                     var dynCall_viiiiiiidi = Module["dynCall_viiiiiiidi"] = asm["dynCall_viiiiiiidi"];
                     var dynCall_viiiiiiii = Module["dynCall_viiiiiiii"] = asm["dynCall_viiiiiiii"];
-                    var dynCall_viiiiiiiid = Module["dynCall_viiiiiiiid"] = asm["dynCall_viiiiiiiid"];
                     var dynCall_viiiiiiiii = Module["dynCall_viiiiiiiii"] = asm["dynCall_viiiiiiiii"];
                     var dynCall_viiiiiiiiidd = Module["dynCall_viiiiiiiiidd"] = asm["dynCall_viiiiiiiiidd"];
                     var dynCall_viiiiiiiiii = Module["dynCall_viiiiiiiiii"] = asm["dynCall_viiiiiiiiii"];
@@ -7468,8 +7445,8 @@
                     var dynCall_viiiiiiiiiiddi = Module["dynCall_viiiiiiiiiiddi"] = asm["dynCall_viiiiiiiiiiddi"];
                     var dynCall_viiiiiiiiiii = Module["dynCall_viiiiiiiiiii"] = asm["dynCall_viiiiiiiiiii"];
                     var dynCall_viiiiiiiiiiid = Module["dynCall_viiiiiiiiiiid"] = asm["dynCall_viiiiiiiiiiid"];
-                    var dynCall_viiiiiiiiiiii = Module["dynCall_viiiiiiiiiiii"] = asm["dynCall_viiiiiiiiiiii"];
-                    var dynCall_viij = Module["dynCall_viij"] = asm["dynCall_viij"];
+                    var dynCall_viiiij = Module["dynCall_viiiij"] = asm["dynCall_viiiij"];
+                    var dynCall_viiij = Module["dynCall_viiij"] = asm["dynCall_viiij"];
                     var dynCall_viijii = Module["dynCall_viijii"] = asm["dynCall_viijii"];
                     var dynCall_vij = Module["dynCall_vij"] = asm["dynCall_vij"];
                     var dynCall_viji = Module["dynCall_viji"] = asm["dynCall_viji"];

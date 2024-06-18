@@ -1,7 +1,7 @@
 {
   "name": "fast-opencv-wasm",
-  "version": "4.5.5-11",
-  "description": "Precompiled OpenCV 4.5.5 to JavaScript + WebAssembly for node.js environment",
+  "version": "4.3.0-11",
+  "description": "Precompiled OpenCV 4.3.0 to JavaScript + WebAssembly for node.js environment",
   "main": "index.js",
   "directories": {
     "example": "examples"

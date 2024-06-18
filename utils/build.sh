@@ -1,14 +1,12 @@
-git clone --branch 4.5.5 --depth 1 https://github.com/opencv/opencv.git
+git clone --branch 4.3.0 --depth 1 https://github.com/opencv/opencv.git
 
 # Build
 (
     cd opencv &&
-    git fetch --tags &&
-    git checkout 4.5.5 &&
+    git checkout 4.3.0 &&
 
     # Add non async flag before compiling in the python build_js.py script
-    docker run --rm --workdir /code -v "$PWD":/code "trzeci/emscripten:1.39.4-ubuntu" `emcmake python ./platforms/js/build_js.py build_wasm --disable_single_file --build_wasm --build_test --build_flags "-s WASM=1 -s WASM_ASYNC_COMPILATION=0 -s SINGLE_FILE=0 "`
-    # docker run --rm --workdir /code -v "$PWD":/code "trzeci/emscripten:1.39.4-ubuntu" `python ./platforms/js/build_js.py --build_wasm --threads --build_test --build_loader --cmake_option "-DBUILD_EXAMPLES=OFF -DBUILD_opencv_flann=OFF -DBUILD_opencv_calib3d=OFF" ./`
+    docker run --rm --workdir /code -v "$PWD":/code "trzeci/emscripten:sdk-tag-1.39.4-64bit" python ./platforms/js/build_js.py build_wasm --build_wasm --build_test --build_flags "-s WASM=1 -s WASM_ASYNC_COMPILATION=0 -s SINGLE_FILE=0 "
 )
 
 # Copy compilation result
