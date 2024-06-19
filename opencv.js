@@ -635,9 +635,9 @@
                         Module["HEAPF32"] = HEAPF32 = new Float32Array(buf);
                         Module["HEAPF64"] = HEAPF64 = new Float64Array(buf)
                     }
-                    var STACK_BASE = 1228784,
-                        DYNAMIC_BASE = 6471664,
-                        DYNAMICTOP_PTR = 1228592;
+                    var STACK_BASE = 1228800,
+                        DYNAMIC_BASE = 6471680,
+                        DYNAMICTOP_PTR = 1228608;
                     var INITIAL_TOTAL_MEMORY = Module["TOTAL_MEMORY"] || 134217728;
                     if (Module["wasmMemory"]) {
                         wasmMemory = Module["wasmMemory"]
@@ -878,7 +878,7 @@
                             globalCtors()
                         }
                     });
-                    var tempDoublePtr = 1228768;
+                    var tempDoublePtr = 1228784;
 
                     function _emscripten_set_main_loop_timing(mode, value) {
                         Browser.mainLoop.timingMode = mode;
