@@ -1,7 +1,7 @@
 {
   "name": "fast-opencv-wasm",
-  "version": "4.4.0-14",
-  "description": "Precompiled OpenCV 4.4.0 to JavaScript + WebAssembly for node.js environment",
+  "version": "4.10.0-14",
+  "description": "Precompiled OpenCV 4.10.0 to JavaScript + WebAssembly for node.js environment",
   "main": "index.js",
   "directories": {
     "example": "examples"
@@ -15,10 +15,9 @@
     "/index.d.ts",
     "/mod.ts",
     "/opencv.js",
+    "/opencv.min.js",
     "/opencv.d.ts",
     "/opencv.wasm",
-    "/opencv-deno.js",
-    "/opencv-bin.js",
     "/types"
   ],
   "repository": {
@@ -38,6 +37,7 @@
     "jimp": "^0.10.2",
     "js-beautify": "^1.13.4",
     "mocha": "^7.1.2",
-    "pixelmatch": "^5.2.0"
+    "pixelmatch": "^5.2.0",
+    "uglify-js": "^3.18.0"
   }
 }
