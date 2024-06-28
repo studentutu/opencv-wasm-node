@@ -6,7 +6,7 @@ services:
   - docker
 
 node_js:
-  - "12"
+  - "18"
 
 arch:
   - amd64
@@ -18,10 +18,10 @@ install:
   - npm install
 
   # Compile OpenCV
-  - (cd ./utils && bash ./build.sh)
+  - (cd ./utils && bash ./build_opencv_wasm.sh && bash ./build.sh)
 
   # Create types
-  - (cd utils && node generateCvProps.js)
+  - (cd ./utils && bash ./generateTypes.sh)
 
   # Install test node modules
   - (cd ./build_wasm_test/bin && npm install)

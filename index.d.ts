@@ -1,9 +1,10 @@
 import * as OpenCV from './types/opencv';
+export * as OpenCV from './types/opencv';
 
 /**
  * OpenCV Object
  */
-export const cv: typeof OpenCV;
+export declare const cv: typeof OpenCV;
 
 /**
  * Translate error number from OpenCV into a meaningful message

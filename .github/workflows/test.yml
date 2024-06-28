@@ -9,19 +9,19 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v2
 
-      - name: Set up Node v14
+      - name: Set up Node v18
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm install
         name: Install Node dependencies
       
-      - run: (cd ./utils && sh ./build.sh)
+      - run: (cd ./utils && sh ./build_opencv_wasm.sh && sh ./build.sh)
         name: Build opencv-wasm
 
-      - run: (cd utils && node generateCvProps.js)
+      - run: (cd ./utils && sh ./generateTypes.sh)
         name: generateCvProps
       
       - run: (cd ./build_wasm_test/bin && npm install)

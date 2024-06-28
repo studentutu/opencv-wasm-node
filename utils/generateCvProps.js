@@ -1,5 +1,9 @@
-const { cv } = require('../.');
 const fs = require('fs');
+
+const { cv: cvLoader } = require('../.'); // will use index.js and opencv.js
+
+const Module = {};
+const cv = cvLoader(Module);
 
 const removeProps = [
     // Invalid item
@@ -10,6 +14,7 @@ let keys = Object.keys(cv);
 
 let result = '';
 result += `// Generated types by generateCvProps.js, don't edit this file\n`;
+result += `// A bit useless right now, but we can probably link Doxygen documentation to this file\n`;
 result += `\n`;
 result += `\n`;
 
@@ -39,5 +44,5 @@ keys.forEach(key => {
 
 });
 
-fs.mkdirSync('../types', { recursive: true});
+fs.mkdirSync('../types', { recursive: true });
 fs.writeFileSync('../types/opencv.ts', result, { encoding: 'utf8' });

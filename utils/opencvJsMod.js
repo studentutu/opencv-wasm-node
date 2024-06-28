@@ -8,10 +8,11 @@ const openCvJs = fs.readFileSync(path.join(__dirname, './build_wasm/bin/opencv.j
 // Add modifications for node.js code
 let openCvJsMod = openCvJs;
 
+// Immidiately invoke request for opencv.js and link to wasm binary
 openCvJsMod =
-`(function() {
-    /* fast-opencv-wasm@${require('../package.json').version} */
-    let opencvWasmBinaryFile = './opencv.wasm';
+    `(function() {
+    /* opencv-wasm@${require('../package.json').version} */
+    let opencvWasmBinaryFile = './opencv_js.wasm';
 
     return ${openCvJsMod};
 })();`;

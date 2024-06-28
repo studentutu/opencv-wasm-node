@@ -113,7 +113,7 @@ dist
 /examples/test-output/*
 !/examples/test-output/.gitkeep
 
-# Git repo
+# Opencv build Git repo
 /utils/opencv
 
 # Code tranformation temp

@@ -1,35 +1,35 @@
 {
-  "name": "fast-opencv-wasm",
-  "version": "4.10.0-14",
-  "description": "Precompiled OpenCV 4.10.0 to JavaScript + WebAssembly for node.js environment",
+  "name": "opencv-wasm",
+  "version": "4.10.0",
+  "description": "Precompiled OpenCV 4.10.0 to (JavaScript + WebAssembly) for node.js and web environment",
   "main": "index.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
     "test": "npx mocha ./test/test.js",
-    "build": "cd ./utils && sh ./build.sh && node generateCvProps.js"
+    "build": "cmd /c (cd ./utils && ./build_opencv_wasm.sh && ./build.sh)",
+    "generateTypes": "cmd /c (cd ./utils && ./generateTypes.sh)"
   },
   "files": [
     "/index.js",
     "/index.d.ts",
-    "/mod.ts",
     "/opencv.js",
     "/opencv.min.js",
     "/opencv.d.ts",
-    "/opencv.wasm",
+    "/opencv_js.wasm",
     "/types"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://CezaryDanielNowak@github.com/echamudi/fast-opencv-wasm.git"
+    "url": "git+https://studentutu@github.com/echamudi/opencv-wasm-node.git"
   },
-  "author": "Ezzat Chamudi",
+  "author": "Roman Fedorov",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/CezaryDanielNowak/fast-opencv-wasm/issues"
+    "url": "https://github.com/studentutu/opencv-wasm-node/issues"
   },
-  "homepage": "https://github.com/CezaryDanielNowak/fast-opencv-wasm#readme",
+  "homepage": "https://github.com/studentutu/opencv-wasm-node#readme",
   "devDependencies": {
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.0.1",
@@ -38,6 +38,7 @@
     "js-beautify": "^1.13.4",
     "mocha": "^7.1.2",
     "pixelmatch": "^5.2.0",
+    "typescript": "^5.5.2",
     "uglify-js": "^3.18.0"
   }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -9,7 +10,9 @@
 
   <title></title>
 </head>
+
 <body>
+  <!-- For smaller size use opencv.min.js-->
   <script src="/opencv.js"></script>
 
   <script>
@@ -17,7 +20,7 @@
       return fetch(wasmBinary, {
         credentials: "same-origin",
         crossOrigin: "anonymous",
-      }).then(function(response) {
+      }).then(function (response) {
         if (!response["ok"]) {
           throw "failed to load wasm binary file at '" + wasmBinary + "'"
         }
@@ -25,12 +28,13 @@
       });
     }
 
-    getBinaryPromise('./opencv.wasm').then((wasmBinary) => {
+    getBinaryPromise('./opencv_js.wasm').then((wasmBinary) => {
       cv = cv({ wasmBinary });
 
       console.log('cv', cv);
     });
-  </script>  
+  </script>
 
 </body>
+
 </html>

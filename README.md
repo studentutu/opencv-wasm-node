@@ -18,11 +18,13 @@ This module has zero dependencies.
 ### node
 
 ```
-npm install opencv-wasm
+npm install @studentutu/opencv-wasm
 ```
+
 Code example:
+
 ```js
-const { cv, cvTranslateError } = require('fast-opencv-wasm');
+const { cv, cvTranslateError } = require('@studentutu/opencv-wasm');
 
 let mat = cv.matFromArray(2, 3, cv.CV_8UC1, [1, 2, 3, 4, 5, 6]);
 console.log('cols =', mat.cols, '; rows =', mat.rows);
@@ -40,8 +42,8 @@ Int8Array(6) [ 1, 4, 2, 5, 3, 6 ]
 */
 ```
 
-
 ## Using in the browser
+
 ```
 <script src="/opencv.js"></script>
 
@@ -58,7 +60,7 @@ function getBinaryPromise(wasmBinary) {
   });
 }
 
-getBinaryPromise('./opencv.wasm').then((wasmBinary) => {
+getBinaryPromise('./opencv_js.wasm').then((wasmBinary) => {
   const Module = {
     wasmBinary,
   };
@@ -68,12 +70,11 @@ getBinaryPromise('./opencv.wasm').then((wasmBinary) => {
 </script> 
 ```
 
-
 ## Usage
 
-Because this module is using the same code as the official OpenCV.js for the web, you can use the same documentation at the web: https://docs.opencv.org/4.5.5/d5/d10/tutorial_js_root.html
+Because this module is using the same code as the official OpenCV.js for the web, you can use the same documentation at the web: <https://docs.opencv.org/4.5.5/d5/d10/tutorial_js_root.html>
 
-There are some minor initialization changes, because this module will be loaded synchronously instead of the OpenCV's default (asynchronously). 
+There are some minor initialization changes, because this module will be loaded synchronously instead of the OpenCV's default (asynchronously).
 
 You can check the files inside [examples](https://github.com/echamudi/opencv-wasm/tree/master/examples) folder as reference on how to initialize, loading images, and saving images.
 
@@ -82,7 +83,7 @@ You can check the files inside [examples](https://github.com/echamudi/opencv-was
 By default, mistakes in code will produce error code. You can use the following snippet to translate the error code into meaningful statement from OpenCV.
 
 ```js
-const { cv, cvTranslateError } = require('fast-opencv-wasm');
+const { cv, cvTranslateError } = require('@studentutu/opencv-wasm');
 
 try {
     // Your OpenCV code
@@ -94,13 +95,16 @@ try {
 ## Versioning
 
 This npm module uses the following versioning number:
+
 ```
 <opencv version>-<this module version>
 ```
+
 For Example
+
 ```
-4.3.0-9
-OpenCV version 4.3.0
+4.10.0-1
+OpenCV version 4.10.0
 OpenCV-Wasm Module version 9
 ```
 
@@ -112,8 +116,10 @@ Run the following script on macOS or Linux (tested on Ubuntu). You need docker o
 
 ```
 npm install
-(cd ./utils && sh ./build.sh)
-(cd utils && node generateCvProps.js)
+(cd ./utils && ./build_opencv_wasm.sh && ./build.sh)
+
+# Create types
+(cd ./utils && ./generateTypes.sh)
 ```
 
 ### Testing
