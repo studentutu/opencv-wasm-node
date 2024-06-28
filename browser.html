@@ -3,20 +3,26 @@
 
 <head>
   <meta charset="UTF-8">
+  <!-- disable all caches, cookies -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- allow CORS for dev server -->
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
 
   <title></title>
 </head>
 
 <body>
   <!-- For smaller size use opencv.min.js-->
-  <script src="/opencv.js"></script>
+  <!-- use vscode extension : live server to serve this file to check if it works -->
+  <script defer src="./opencv.js"></script>
 
   <script>
     function getBinaryPromise(wasmBinary) {
+
+      // if crossOrigin: "anonymous" does not work, then use crossOrigin: "null"
       return fetch(wasmBinary, {
         credentials: "same-origin",
         crossOrigin: "anonymous",
@@ -28,11 +34,12 @@
       });
     }
 
-    getBinaryPromise('./opencv_js.wasm').then((wasmBinary) => {
-      cv = cv({ wasmBinary });
+    getBinaryPromise('./opencv_js.wasm')
+      .then((wasmBinary) => {
+        cv = cv({ wasmBinary });
 
-      console.log('cv', cv);
-    });
+        console.log('cv.build info', cv.getBuildInformation());
+      });
   </script>
 
 </body>
