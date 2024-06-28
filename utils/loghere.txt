@@ -1,0 +1,6 @@
+
+Started build wasm
+current directory is /my_files/opencv
+Platform folder exists
+Finished build wasm
+0

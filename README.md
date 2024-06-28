@@ -2,6 +2,8 @@
 
 Precompiled OpenCV to (JavaScript + WebAssembly) for node.js and web environment.
 
+To use it in your project, please use NPM link.
+
 Generally wasm will run slower and will have fewer available API (wasm limitation) compared to the native OpenCV. But it's a good option if you want to run OpenCV on the web.
 
 Please check available APIs at [OpenCV-Wasm API](./types/opencv.ts).
@@ -29,7 +31,9 @@ npm install @studentutu/opencv-wasm
 Code example:
 
 ```js
-const { cv, cvTranslateError } = require('@studentutu/opencv-wasm');
+const { cv: cvLoader, cvTranslateError } = require('@studentutu/opencv-wasm');
+const Module = {};
+const cv = cvLoader(Module);
 
 let mat = cv.matFromArray(2, 3, cv.CV_8UC1, [1, 2, 3, 4, 5, 6]);
 console.log('cols =', mat.cols, '; rows =', mat.rows);
@@ -50,9 +54,11 @@ Int8Array(6) [ 1, 4, 2, 5, 3, 6 ]
 ## Using in the browser
 
 ```
-<script src="/opencv.js"></script>
+<script src="./opencv.min.js"></script>
+
 
 <script>
+// Separate initialization for wasm.
 function getBinaryPromise(wasmBinary) {
   return fetch(wasmBinary, {
     credentials: "same-origin",
@@ -119,7 +125,7 @@ OpenCV-Wasm Module version 1
 
 Install nvm and use node version 20.x.
 Install yarn.
-INstall docker.
+Install docker.
 
 Run the following script on macOS or Linux (tested on Ubuntu, Wundows).
 You need docker on the system.

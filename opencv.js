@@ -1,11 +1,11 @@
-(function () {
+(function() {
     /* opencv-wasm@4.10.0 */
     let opencvWasmBinaryFile = './opencv_js.wasm';
 
-    return (function (root, factory) {
+    return (function(root, factory) {
         if (typeof define === 'function' && define.amd) {
             // AMD. Register as an anonymous module.
-            define(function () {
+            define(function() {
                 return (root.cv = factory());
             });
         } else if (typeof module === 'object' && module.exports) {
@@ -23,13 +23,13 @@
             // Other shells, e.g. d8
             root.cv = factory();
         }
-    }(this, function () {
+    }(this, function() {
 
         var cv = (() => {
             var _scriptName = typeof document != 'undefined' ? document.currentScript?.src : undefined;
             if (typeof __filename != 'undefined') _scriptName ||= __filename;
             return (
-                function (moduleArg = {}) {
+                function(moduleArg = {}) {
                     var moduleRtn;
 
                     var Module = moduleArg;
@@ -41,7 +41,7 @@
                     var ENVIRONMENT_IS_WEB = typeof window == "object";
                     var ENVIRONMENT_IS_WORKER = typeof importScripts == "function";
                     var ENVIRONMENT_IS_NODE = typeof process == "object" && typeof process.versions == "object" && typeof process.versions.node == "string";
-                    if (ENVIRONMENT_IS_NODE) { }
+                    if (ENVIRONMENT_IS_NODE) {}
                     var moduleOverrides = Object.assign({}, Module);
                     var arguments_ = [];
                     var thisProgram = "./this.program";
@@ -142,7 +142,7 @@
                                 }).then(onload, onerror)
                             }
                         }
-                    } else { }
+                    } else {}
                     var out = Module["print"] || console.log.bind(console);
                     var err = Module["printErr"] || console.error.bind(console);
                     Object.assign(Module, moduleOverrides);
@@ -647,8 +647,8 @@
                             }
                             var canvas = Module["canvas"];
                             if (canvas) {
-                                canvas.requestPointerLock = canvas["requestPointerLock"] || canvas["mozRequestPointerLock"] || canvas["webkitRequestPointerLock"] || canvas["msRequestPointerLock"] || (() => { });
-                                canvas.exitPointerLock = document["exitPointerLock"] || document["mozExitPointerLock"] || document["webkitExitPointerLock"] || document["msExitPointerLock"] || (() => { });
+                                canvas.requestPointerLock = canvas["requestPointerLock"] || canvas["mozRequestPointerLock"] || canvas["webkitRequestPointerLock"] || canvas["msRequestPointerLock"] || (() => {});
+                                canvas.exitPointerLock = document["exitPointerLock"] || document["mozExitPointerLock"] || document["webkitExitPointerLock"] || document["msExitPointerLock"] || (() => {});
                                 canvas.exitPointerLock = canvas.exitPointerLock.bind(document);
                                 document.addEventListener("pointerlockchange", pointerLockChange, false);
                                 document.addEventListener("mozpointerlockchange", pointerLockChange, false);
@@ -698,7 +698,7 @@
                             }
                             return ctx
                         },
-                        destroyContext(canvas, useWebGL, setInModule) { },
+                        destroyContext(canvas, useWebGL, setInModule) {},
                         fullscreenHandlersInstalled: false,
                         lockPointer: undefined,
                         resizeCanvas: undefined,
@@ -750,7 +750,7 @@
                             if (!Browser.isFullscreen) {
                                 return false
                             }
-                            var CFS = document["exitFullscreen"] || document["cancelFullScreen"] || document["mozCancelFullScreen"] || document["msExitFullscreen"] || document["webkitCancelFullScreen"] || (() => { });
+                            var CFS = document["exitFullscreen"] || document["cancelFullScreen"] || document["mozCancelFullScreen"] || document["msExitFullscreen"] || document["webkitCancelFullScreen"] || (() => {});
                             CFS.apply(document, []);
                             return true
                         },
@@ -792,7 +792,7 @@
                                 ogg: "audio/ogg",
                                 wav: "audio/wav",
                                 mp3: "audio/mpeg"
-                            }[name.substr(name.lastIndexOf(".") + 1)]
+                            } [name.substr(name.lastIndexOf(".") + 1)]
                         },
                         getUserMedia(func) {
                             window.getUserMedia ||= navigator["getUserMedia"] || navigator["mozGetUserMedia"];
@@ -1090,7 +1090,7 @@
                                 if (HEAP32[status >> 2] === 0 && ret) {
                                     return UTF8ToString(ret)
                                 }
-                            } catch (e) { } finally {
+                            } catch (e) {} finally {
                                 _free(ret);
                                 if (demangle.recursionGuard < 2) --demangle.recursionGuard
                             }
@@ -1240,7 +1240,7 @@
                                 }
                                 var randomBytes = crypto_module["randomBytes"];
                                 return view => (view.set(randomBytes(view.byteLength)), view)
-                            } catch (e) { }
+                            } catch (e) {}
                         }
                         abort("initRandomDevice")
                     };
@@ -1327,7 +1327,7 @@
                                 if (result !== null) {
                                     result += "\n"
                                 }
-                            } else { }
+                            } else {}
                             if (!result) {
                                 return null
                             }
@@ -1337,8 +1337,8 @@
                     };
                     var TTY = {
                         ttys: [],
-                        init() { },
-                        shutdown() { },
+                        init() {},
+                        shutdown() {},
                         register(dev, ops) {
                             TTY.ttys[dev] = {
                                 input: [],
@@ -1614,7 +1614,7 @@
                                     var new_node;
                                     try {
                                         new_node = FS.lookupNode(new_dir, new_name)
-                                    } catch (e) { }
+                                    } catch (e) {}
                                     if (new_node) {
                                         for (var i in new_node.contents) {
                                             throw new FS.ErrnoError(55)
@@ -1799,9 +1799,9 @@
                                 removeRunDependency(dep)
                             }
                             if (FS_handledByPreloadPlugin(byteArray, fullname, finish, () => {
-                                onerror?.();
-                                removeRunDependency(dep)
-                            })) {
+                                    onerror?.();
+                                    removeRunDependency(dep)
+                                })) {
                                 return
                             }
                             finish(byteArray)
@@ -2089,7 +2089,7 @@
                             try {
                                 var node = FS.lookupNode(dir, name);
                                 return 20
-                            } catch (e) { }
+                            } catch (e) {}
                             return FS.nodePermissions(dir, "wx")
                         },
                         mayDelete(dir, name, isdir) {
@@ -2396,7 +2396,7 @@
                             var new_node;
                             try {
                                 new_node = FS.lookupNode(new_dir, new_name)
-                            } catch (e) { }
+                            } catch (e) {}
                             if (old_node === new_node) {
                                 return
                             }
@@ -2628,7 +2628,7 @@
                                         follow: !(flags & 131072)
                                     });
                                     node = lookup.node
-                                } catch (e) { }
+                                } catch (e) {}
                             }
                             var created = false;
                             if (flags & 64) {
@@ -2983,7 +2983,7 @@
                                     follow: !dontResolveLastLink
                                 });
                                 path = lookup.path
-                            } catch (e) { }
+                            } catch (e) {}
                             var ret = {
                                 isRoot: false,
                                 exists: false,
@@ -3025,7 +3025,7 @@
                                 var current = PATH.join2(parent, part);
                                 try {
                                     FS.mkdir(current)
-                                } catch (e) { }
+                                } catch (e) {}
                                 parent = current
                             }
                             return current
@@ -3223,7 +3223,7 @@
                             }
                             Object.defineProperties(node, {
                                 usedBytes: {
-                                    get: function () {
+                                    get: function() {
                                         return this.contents.length
                                     }
                                 }
@@ -3513,7 +3513,7 @@
                         throw new InternalError(message)
                     };
                     var whenDependentTypesAreResolved = (myTypes, dependentTypes, getTypeConverters) => {
-                        myTypes.forEach(function (type) {
+                        myTypes.forEach(function(type) {
                             typeDependencies[type] = dependentTypes
                         });
 
@@ -3660,7 +3660,7 @@
                             }]
                         })
                     };
-                    var __embind_register_bigint = (primitiveType, name, size, minRange, maxRange) => { };
+                    var __embind_register_bigint = (primitiveType, name, size, minRange, maxRange) => {};
                     var embind_init_charCodes = () => {
                         var codes = new Array(256);
                         for (var i = 0; i < 256; ++i) {
@@ -3714,14 +3714,14 @@
                         name = readLatin1String(name);
                         registerType(rawType, {
                             name: name,
-                            fromWireType: function (wt) {
+                            fromWireType: function(wt) {
                                 return !!wt
                             },
-                            toWireType: function (destructors, o) {
+                            toWireType: function(destructors, o) {
                                 return o ? trueValue : falseValue
                             },
                             argPackAdvance: GenericWireTypeSize,
-                            readValueFromPointer: function (pointer) {
+                            readValueFromPointer: function(pointer) {
                                 return this["fromWireType"](HEAPU8[pointer])
                             },
                             destructorFunction: null
@@ -3743,7 +3743,7 @@
                         throwBindingError(getInstanceTypeName(obj) + " instance already deleted")
                     };
                     var finalizationRegistry = false;
-                    var detachFinalizer = handle => { };
+                    var detachFinalizer = handle => {};
                     var runDestructor = $$ => {
                         if ($$.smartPtr) {
                             $$.smartPtrType.rawDestructor($$.smartPtr)
@@ -3999,14 +3999,14 @@
                         })
                     };
 
-                    function ClassHandle() { }
+                    function ClassHandle() {}
                     var createNamedFunction = (name, body) => Object.defineProperty(body, "name", {
                         value: name
                     });
                     var ensureOverloadTable = (proto, methodName, humanName) => {
                         if (undefined === proto[methodName].overloadTable) {
                             var prevFunc = proto[methodName];
-                            proto[methodName] = function (...args) {
+                            proto[methodName] = function(...args) {
                                 if (!proto[methodName].overloadTable.hasOwnProperty(args.length)) {
                                     throwBindingError(`Function '${humanName}' called with an invalid number of arguments (${args.length}) - expects one of (${proto[methodName].overloadTable})!`)
                                 }
@@ -4110,7 +4110,7 @@
                             throwBindingError(`Cannot pass deleted object as a pointer of type ${this.name}`)
                         }
                         if (!this.isConst && handle.$$.ptrType.isConst) {
-                            throwBindingError(`Cannot convert argument of type ${handle.$$.smartPtrType ? handle.$$.smartPtrType.name : handle.$$.ptrType.name} to parameter type ${this.name}`)
+                            throwBindingError(`Cannot convert argument of type ${handle.$$.smartPtrType?handle.$$.smartPtrType.name:handle.$$.ptrType.name} to parameter type ${this.name}`)
                         }
                         var handleClass = handle.$$.ptrType.registeredClass;
                         ptr = upcastPointer(handle.$$.ptr, handleClass, this.registeredClass);
@@ -4123,7 +4123,7 @@
                                     if (handle.$$.smartPtrType === this) {
                                         ptr = handle.$$.smartPtr
                                     } else {
-                                        throwBindingError(`Cannot convert argument of type ${handle.$$.smartPtrType ? handle.$$.smartPtrType.name : handle.$$.ptrType.name} to parameter type ${this.name}`)
+                                        throwBindingError(`Cannot convert argument of type ${handle.$$.smartPtrType?handle.$$.smartPtrType.name:handle.$$.ptrType.name} to parameter type ${this.name}`)
                                     }
                                     break;
                                 case 1:
@@ -4258,7 +4258,7 @@
                         return fp
                     };
                     var extendError = (baseErrorType, errorName) => {
-                        var errorClass = createNamedFunction(errorName, function (message) {
+                        var errorClass = createNamedFunction(errorName, function(message) {
                             this.name = errorName;
                             this.message = message;
                             var stack = new Error(message).stack;
@@ -4268,7 +4268,7 @@
                         });
                         errorClass.prototype = Object.create(baseErrorType.prototype);
                         errorClass.prototype.constructor = errorClass;
-                        errorClass.prototype.toString = function () {
+                        errorClass.prototype.toString = function() {
                             if (this.message === undefined) {
                                 return this.name
                             } else {
@@ -4312,7 +4312,7 @@
                         downcast &&= embind__requireFunction(downcastSignature, downcast);
                         rawDestructor = embind__requireFunction(destructorSignature, rawDestructor);
                         var legalFunctionName = makeLegalFunctionName(name);
-                        exposePublicSymbol(legalFunctionName, function () {
+                        exposePublicSymbol(legalFunctionName, function() {
                             throwUnboundTypeError(`Cannot construct ${name} due to unbound types`, [baseClassRawType])
                         });
                         whenDependentTypesAreResolved([rawType, rawPointerType, rawConstPointerType], baseClassRawType ? [baseClassRawType] : [], base => {
@@ -4325,7 +4325,7 @@
                             } else {
                                 basePrototype = ClassHandle.prototype
                             }
-                            var constructor = createNamedFunction(name, function (...args) {
+                            var constructor = createNamedFunction(name, function(...args) {
                                 if (Object.getPrototypeOf(this) !== instancePrototype) {
                                     throw new BindingError("Use 'new' to construct " + name)
                                 }
@@ -4374,7 +4374,7 @@
                         if (!(constructor instanceof Function)) {
                             throw new TypeError(`new_ called with constructor type ${typeof constructor} which is not a function`)
                         }
-                        var dummy = createNamedFunction(constructor.name || "unknownFunctionName", function () { });
+                        var dummy = createNamedFunction(constructor.name || "unknownFunctionName", function() {});
                         dummy.prototype = constructor.prototype;
                         var obj = new dummy;
                         var r = constructor.apply(obj, argumentList);
@@ -4390,7 +4390,7 @@
                             argsList += (i !== 0 ? ", " : "") + "arg" + i;
                             argsListWired += (i !== 0 ? ", " : "") + "arg" + i + "Wired"
                         }
-                        var invokerFnBody = `\n        return function (${argsList}) {\n        if (arguments.length !== ${argCount - 2}) {\n          throwBindingError('function ' + humanName + ' called with ' + arguments.length + ' arguments, expected ${argCount - 2}');\n        }`;
+                        var invokerFnBody = `\n        return function (${argsList}) {\n        if (arguments.length !== ${argCount-2}) {\n          throwBindingError('function ' + humanName + ' called with ' + arguments.length + ' arguments, expected ${argCount-2}');\n        }`;
                         if (needsDestructorStack) {
                             invokerFnBody += "var destructors = [];\n"
                         }
@@ -4420,7 +4420,7 @@
                         }
                         if (returns) {
                             invokerFnBody += "var ret = retType['fromWireType'](rv);\n" + "return ret;\n"
-                        } else { }
+                        } else {}
                         invokerFnBody += "}\n";
                         return [args1, invokerFnBody]
                     }
@@ -4519,7 +4519,7 @@
                                 classType.registeredClass.constructor_body = []
                             }
                             if (undefined !== classType.registeredClass.constructor_body[argCount - 1]) {
-                                throw new BindingError(`Cannot register multiple constructors with identical number of parameters (${argCount - 1}) for class '${classType.name}'! Overload resolution is currently only performed using the parameter count, not actual type info!`)
+                                throw new BindingError(`Cannot register multiple constructors with identical number of parameters (${argCount-1}) for class '${classType.name}'! Overload resolution is currently only performed using the parameter count, not actual type info!`)
                             }
                             classType.registeredClass.constructor_body[argCount - 1] = () => {
                                 throwUnboundTypeError(`Cannot construct ${classType.name} due to unbound types`, rawArgTypes)
@@ -4616,7 +4616,7 @@
                                 if (setter) {
                                     setter = embind__requireFunction(setterSignature, setter);
                                     var setterArgumentType = types[1];
-                                    desc.set = function (v) {
+                                    desc.set = function(v) {
                                         var ptr = validateThis(this, classType, humanName + " setter");
                                         var destructors = [];
                                         setter(setterContext, ptr, setterArgumentType["toWireType"](destructors, v));
@@ -4703,11 +4703,11 @@
                     var floatReadValueFromPointer = (name, width) => {
                         switch (width) {
                             case 4:
-                                return function (pointer) {
+                                return function(pointer) {
                                     return this["fromWireType"](HEAPF32[pointer >> 2])
                                 };
                             case 8:
-                                return function (pointer) {
+                                return function(pointer) {
                                     return this["fromWireType"](HEAPF64[pointer >> 3])
                                 };
                             default:
@@ -4730,7 +4730,7 @@
                         name = readLatin1String(name);
                         name = getFunctionName(name);
                         rawInvoker = embind__requireFunction(signature, rawInvoker);
-                        exposePublicSymbol(name, function () {
+                        exposePublicSymbol(name, function() {
                             throwUnboundTypeError(`Cannot call ${name} due to unbound types`, argTypes)
                         }, argCount - 1);
                         whenDependentTypesAreResolved([], argTypes, argTypes => {
@@ -4762,15 +4762,15 @@
                             fromWireType = value => value << bitshift >>> bitshift
                         }
                         var isUnsignedType = name.includes("unsigned");
-                        var checkAssertions = (value, toTypeName) => { };
+                        var checkAssertions = (value, toTypeName) => {};
                         var toWireType;
                         if (isUnsignedType) {
-                            toWireType = function (destructors, value) {
+                            toWireType = function(destructors, value) {
                                 checkAssertions(value, this.name);
                                 return value >>> 0
                             }
                         } else {
-                            toWireType = function (destructors, value) {
+                            toWireType = function(destructors, value) {
                                 checkAssertions(value, this.name);
                                 return value
                             }
@@ -5142,7 +5142,7 @@
                             argsList.push("arg" + i);
                             params.push("argType" + i);
                             args.push(types[i]);
-                            functionBody += `  var arg${i} = argType${i}.readValueFromPointer(args${offset ? "+" + offset : ""});\n`;
+                            functionBody += `  var arg${i} = argType${i}.readValueFromPointer(args${offset?"+"+offset:""});\n`;
                             offset += types[i]["argPackAdvance"]
                         }
                         var invoker = kind === 1 ? "new func" : "func.call";
@@ -5155,7 +5155,7 @@
                         functionBody += "};\n";
                         params.push(functionBody);
                         var invokerFunction = newFunc(Function, params)(...args);
-                        var functionName = `methodCaller<(${types.map(t => t.name).join(", ")}) => ${retType.name}>`;
+                        var functionName = `methodCaller<(${types.map(t=>t.name).join(", ")}) => ${retType.name}>`;
                         return emval_addMethodCaller(createNamedFunction(functionName, invokerFunction))
                     };
                     var __emval_get_property = (handle, key) => {
@@ -5195,7 +5195,7 @@
                             wasmMemory.grow(pages);
                             updateMemoryViews();
                             return 1
-                        } catch (e) { }
+                        } catch (e) {}
                     };
                     var _emscripten_resize_heap = requestedSize => {
                         var oldSize = HEAPU8.length;
@@ -5351,7 +5351,7 @@
                     var isLeapYear = year => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
                     var arraySum = (array, index) => {
                         var sum = 0;
-                        for (var i = 0; i <= index; sum += array[i++]) { }
+                        for (var i = 0; i <= index; sum += array[i++]) {}
                         return sum
                     };
                     var MONTH_DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -5724,8 +5724,8 @@
                         }
                         if (Module["setStatus"]) {
                             Module["setStatus"]("Running...");
-                            setTimeout(function () {
-                                setTimeout(function () {
+                            setTimeout(function() {
+                                setTimeout(function() {
                                     Module["setStatus"]("")
                                 }, 1);
                                 doRun()
@@ -5747,7 +5747,7 @@
                     if (typeof cv === "undefined") {
                         var cv = Module
                     }
-                    Module["imread"] = function (imageSource) {
+                    Module["imread"] = function(imageSource) {
                         var img = null;
                         if (typeof imageSource === "string") {
                             img = document.getElementById(imageSource)
@@ -5774,7 +5774,7 @@
                         var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                         return cv.matFromImageData(imgData)
                     };
-                    Module["imshow"] = function (canvasSource, mat) {
+                    Module["imshow"] = function(canvasSource, mat) {
                         var canvas = null;
                         if (typeof canvasSource === "string") {
                             canvas = document.getElementById(canvasSource)
@@ -5815,7 +5815,7 @@
                         ctx.putImageData(imgData, 0, 0);
                         img.delete()
                     };
-                    Module["VideoCapture"] = function (videoSource) {
+                    Module["VideoCapture"] = function(videoSource) {
                         var video = null;
                         if (typeof videoSource === "string") {
                             video = document.getElementById(videoSource)
@@ -5831,7 +5831,7 @@
                         canvas.height = video.height;
                         var ctx = canvas.getContext("2d");
                         this.video = video;
-                        this.read = function (frame) {
+                        this.read = function(frame) {
                             if (!(frame instanceof cv.Mat)) {
                                 throw new Error("Please input the valid cv.Mat instance.");
                                 return
@@ -5932,13 +5932,13 @@
                             }
                         }
                     }
-                    RotatedRect.points = function (obj) {
+                    RotatedRect.points = function(obj) {
                         return Module.rotatedRectPoints(obj)
                     };
-                    RotatedRect.boundingRect = function (obj) {
+                    RotatedRect.boundingRect = function(obj) {
                         return Module.rotatedRectBoundingRect(obj)
                     };
-                    RotatedRect.boundingRect2f = function (obj) {
+                    RotatedRect.boundingRect2f = function(obj) {
                         return Module.rotatedRectBoundingRect2f(obj)
                     };
                     Module["RotatedRect"] = RotatedRect;
@@ -5950,7 +5950,7 @@
                         this.push(typeof v3 === "undefined" ? 0 : v3)
                     }
                     Scalar.prototype = new Array;
-                    Scalar.all = function (v) {
+                    Scalar.all = function(v) {
                         return new Scalar(v, v, v, v)
                     };
                     Module["Scalar"] = Scalar;
@@ -6017,7 +6017,7 @@
                         }
                     }
                     Module["TermCriteria"] = TermCriteria;
-                    Module["matFromArray"] = function (rows, cols, type, array) {
+                    Module["matFromArray"] = function(rows, cols, type, array) {
                         var mat = new cv.Mat(rows, cols, type);
                         switch (type) {
                             case cv.CV_8U:
@@ -6082,7 +6082,7 @@
                         }
                         return mat
                     };
-                    Module["matFromImageData"] = function (imageData) {
+                    Module["matFromImageData"] = function(imageData) {
                         var mat = new cv.Mat(imageData.height, imageData.width, cv.CV_8UC4);
                         mat.data.set(imageData.data);
                         return mat

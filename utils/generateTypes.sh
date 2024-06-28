@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x  # Enable script debugging for logging
 
 # assume you are in root folder
 cd ./utils

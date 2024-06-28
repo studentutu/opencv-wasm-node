@@ -17,9 +17,11 @@
 <body>
   <!-- For smaller size use opencv.min.js-->
   <!-- use vscode extension : live server to serve this file to check if it works -->
-  <script defer src="./opencv.js"></script>
+  <!-- <script defer src="./opencv.js"></script> -->
+  <script defer src="./opencv.min.js"></script>
 
   <script>
+    console.log("WASM should be loaded first.");
     function getBinaryPromise(wasmBinary) {
 
       // if crossOrigin: "anonymous" does not work, then use crossOrigin: "null"
@@ -37,6 +39,7 @@
     getBinaryPromise('./opencv_js.wasm')
       .then((wasmBinary) => {
         cv = cv({ wasmBinary });
+        console.log("wasm is loaded");
 
         console.log('cv.build info', cv.getBuildInformation());
       });

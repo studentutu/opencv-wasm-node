@@ -1,9 +1,15 @@
 #!/bin/bash
+# set -e
+set -x  # Enable script debugging for logging
+
+# assume you are in ./utils folder
 
 # Copy compilation result
+echo "Copying build_wasm to root"
 cp -a ./opencv/build_wasm/ ./build_wasm
 
 # Transpile opencv.js files
+echo "Started transpiling opencv.js"
 node opencvJsMod.js
 
 # Beautify original and Uglify and compress to min for web
