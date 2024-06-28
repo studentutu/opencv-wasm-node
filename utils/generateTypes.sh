@@ -1,5 +1,10 @@
 #!/bin/bash
 
-# assume you are in ./utils
+# assume you are in root folder
+cd ./utils
+
+echo "Generating types"
 node generateCvProps.js
-npx tsc --declaration --allowJs --emitDeclarationOnly --outDir ../types ../types/opencv.ts
+
+echo "Finished generating types"
+# npx tsc --declaration --allowJs --emitDeclarationOnly --outDir ../types ../types/opencv.ts

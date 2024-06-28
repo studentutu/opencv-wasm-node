@@ -2,6 +2,7 @@
 // A bit useless right now, but we can probably link Doxygen documentation to this file
 
 
+
 /** function */
 export var requestFullscreen: any;
 

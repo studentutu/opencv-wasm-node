@@ -18,10 +18,10 @@ install:
   - npm install
 
   # Compile OpenCV
-  - (cd ./utils && bash ./build_opencv_wasm.sh && bash ./build.sh)
+  - bash ./utils/buildcombined.sh
 
   # Create types
-  - (cd ./utils && bash ./generateTypes.sh)
+  - bash ./utils/generateTypes.sh
 
   # Install test node modules
   - (cd ./build_wasm_test/bin && npm install)

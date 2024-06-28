@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "npx mocha ./test/test.js",
-    "build": "cmd /c (cd ./utils && ./build_opencv_wasm.sh && ./build.sh)",
-    "generateTypes": "cmd /c (cd ./utils && ./generateTypes.sh)"
+    "build": "bash ./utils/buildcombined.sh",
+    "generateTypes": "bash ./utils/generateTypes.sh"
   },
   "files": [
     "/index.js",

@@ -18,10 +18,10 @@ jobs:
       - run: npm install
         name: Install Node dependencies
       
-      - run: (cd ./utils && sh ./build_opencv_wasm.sh && sh ./build.sh)
+      - run: sh ./utils/buildcombined.sh
         name: Build opencv-wasm
 
-      - run: (cd ./utils && sh ./generateTypes.sh)
+      - run: sh ./utils/generateTypes.sh
         name: generateCvProps
       
       - run: (cd ./build_wasm_test/bin && npm install)
