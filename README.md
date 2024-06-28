@@ -1,10 +1,15 @@
 # OpenCV-Wasm
 
-Precompiled OpenCV to JavaScript + WebAssembly for node.js and deno environment. 🦕
+Precompiled OpenCV to (JavaScript + WebAssembly) for node.js and web environment.
+
+Generally wasm will run slower and will have fewer available API (wasm limitation) compared to the native OpenCV. But it's a good option if you want to run OpenCV on the web.
+
+Please check available APIs at [OpenCV-Wasm API](./types/opencv.ts).
 
 In this Wasm-compiled OpenCV, there's no need to have OpenCV installed in the machine. The entire OpenCV library is already inside this package (`opencv.js` and `opencv.wasm`).
 
-This module has zero dependencies.
+This module has zero runtime dependencies.
+See build section for more details.
 
 ## Examples
 
@@ -72,7 +77,7 @@ getBinaryPromise('./opencv_js.wasm').then((wasmBinary) => {
 
 ## Usage
 
-Because this module is using the same code as the official OpenCV.js for the web, you can use the same documentation at the web: <https://docs.opencv.org/4.5.5/d5/d10/tutorial_js_root.html>
+Because this module is using the same code as the official OpenCV.js for the web, you can use the same documentation at the web: <https://docs.opencv.org/4.10.0/d5/d10/tutorial_js_root.html>
 
 There are some minor initialization changes, because this module will be loaded synchronously instead of the OpenCV's default (asynchronously).
 
@@ -105,21 +110,26 @@ For Example
 ```
 4.10.0-1
 OpenCV version 4.10.0
-OpenCV-Wasm Module version 9
+OpenCV-Wasm Module version 1
 ```
 
 ## Development
 
 ### Building
 
-Run the following script on macOS or Linux (tested on Ubuntu). You need docker on the system.
+Install nvm and use node version 20.x.
+Install yarn.
+INstall docker.
+
+Run the following script on macOS or Linux (tested on Ubuntu, Wundows).
+You need docker on the system.
+Prefer yarn over npm.
 
 ```
 npm install
-(cd ./utils && ./build_opencv_wasm.sh && ./build.sh)
-
-# Create types
-(cd ./utils && ./generateTypes.sh)
+npm run build
+npm run generateTypes
+npm run test
 ```
 
 ### Testing
