@@ -16,12 +16,14 @@ echo "Started build wasm" >> ./loghere.txt
 
 cd ./opencv
 
+echo "current directory is $(pwd)"
 echo "current directory is $(pwd)" >> ../loghere.txt 
 
 
-if [ ! -d "./build_wasm" ]; then
-    makdir ./build_wasm
+if [ -d "./build_wasm" ]; then
+    rm -rf ./build_wasm
 fi
+mkdir ./build_wasm
 
 if [ ! -d "./platforms" ]; then
     echo "There are no platform folder!!!!! Check if you are running volume from the correct directory." >> ../loghere.txt

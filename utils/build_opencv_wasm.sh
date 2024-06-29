@@ -12,7 +12,13 @@ if [ ! -d "./opencv" ]; then
     git clone --branch 4.10.0 --depth 1 https://github.com/opencv/opencv.git
 fi
 
+cd ./opencv
 git fetch --tags
+git status
+git reset --hard
+git checkout 4.10.0
+
+cd ../
 
 # docker system prune -a -f
 echo "Trying to build docker at $(pwd), not that ./utils should be mounted volume and /opencv folder should be available in container"
@@ -21,16 +27,23 @@ if [ ! -d "./opencv/build_wasm" ]; then
     mkdir ./opencv/build_wasm
 fi
 
+sed -i -e "s/GENERATE_XML *= NO/GENERATE_XML =YES/" ./opencv/doc/Doxyfile.in
+
 docker stop $(docker ps -q)
+docker stop opencv-wasm
 docker rm opencv-wasm
 docker volume rm -f my_files
+
+# clean all cached for docker
+docker system prune -a -f
 docker volume prune -f
+
+
+chmod +x ./docker_wasm_build.sh
 docker volume create my_files
 docker build -t opencv-wasm .
 
-chmod +x ./docker_wasm_build.sh
 
-# for windows we need to explicitly change path to linux like path.
 if [[ "$OSTYPE" =~ ^cygwin|msys|mingw ]]; then
     echo "You are running on Windows, please make sure path is suitable for linux environment"
     echo "Using Path: $(pwd)"

@@ -1,0 +1,26 @@
+Find out how to pass flags to emcc to generate typescript definition files.
+
+
+Actual build script:
+cd /my_files/opencv/build_wasm/modules/js && /usr/bin/python3 /my_files/opencv/modules/js/src/make_umd.py /my_files/opencv/build_wasm/bin/opencv_js.js /my_files/opencv/build_wasm/bin/opencv.js
+
+Check:
+
+emcmake python3 ./platforms/js/build_js.py ./build_wasm --clean_build_dir --build_wasm --build_test --build_flags "-lembind --emit-tsd opencv_wams_types.d.ts -s WASM=1 -s WASM_ASYNC_COMPILATION=0 -s SINGLE_FILE=1 -s USE_PTHREADS=0 -s ENVIRONMENT=node,web"
+
+
+For generating typescript definition files, we can try to use :
+https://github.com/charto/autogypi
+https://github.com/peteruhnak/opencv-ts/blob/master/ts_generator/typegen.py
+https://github.com/zspitz/ts-activex-gen/tree/master
+
+Most suitable workaround for now is to use Doxygen with XML output and generrate types from it.
+See issue: https://github.com/theothergrantdavidson/opencv-ts/issues/29
+https://github.com/cancerberoSgx/mirada/tree/master/doxygen2typescript
+
+Fix issue with electron no supported with wasm ( neither node nor render ).
+
+maybe build with 
+    --webnn
+
+Fix repo corruption issue after opencv build (cmake configuration error).
