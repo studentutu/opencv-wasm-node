@@ -13,6 +13,21 @@ In this Wasm-compiled OpenCV, there's no need to have OpenCV installed in the ma
 This module has zero runtime dependencies.
 See build section for more details.
 
+## Table of Contents
+
+- [Examples](#examples)
+- [Installation](#installation)
+  - [node](#node)
+  - [Using in the browser](#using-in-the-browser)
+- [Usage](#usage)
+- [Error Handling](#error-handling)
+- [Versioning](#versioning)
+- [Development](#development)
+  - [Building](#building)
+  - [Testing](#testing)
+- [Authors](#authors)
+- [License](#license)
+
 ## Examples
 
 | Code | Input | Output |
@@ -24,7 +39,7 @@ See build section for more details.
 
 ### node
 
-```
+``` bash
 npm install @studentutu/opencv-wasm
 ```
 
@@ -53,7 +68,7 @@ Int8Array(6) [ 1, 4, 2, 5, 3, 6 ]
 
 ## Using in the browser
 
-```
+``` html
 <script src="./opencv.min.js"></script>
 
 
@@ -121,22 +136,31 @@ OpenCV-Wasm Module version 1
 
 ## Development
 
+### Prerequisites
+
+- nvm
+- node version 20.x
+- yarn
+- docker
+
 ### Building
 
-Install nvm and use node version 20.x.
-Install yarn.
-Install docker.
-
-Run the following script on macOS or Linux (tested on Ubuntu, Wundows).
+Run the following script on macOS or Linux (tested on Ubuntu, Windows).
 You need docker on the system.
 Prefer yarn over npm.
 
+``` bash
+npm install or yarn install
+npm run build or yarn build
+npm run generateTypes or yarn generateTypes
+npm run test or yarn test
 ```
-npm install
-npm run build
-npm run generateTypes
-npm run test
-```
+
+Please note that after each build, you need to manually remove opencv repo folder (currently not supported running multiple builds with different options).
+To do this, run `rm -rf ./utils/opencv` from the root of this repo or delete folder manually.
+
+Actual build script for opencv is located at `./utils/docker_wasm_build.sh`.
+For more build options, please check `./utils/readme.md`.
 
 ### Testing
 
@@ -153,7 +177,7 @@ npm test
 
 ## Authors
 
-* **Ezzat Chamudi** - [echamudi](https://github.com/echamudi)
+- **Ezzat Chamudi** - [echamudi](https://github.com/echamudi)
 
 See also the list of [contributors](https://github.com/echamudi/opencv-wasm/graphs/contributors) who participated in this project.
 
