@@ -23,8 +23,10 @@ See build section for more details.
 - [Error Handling](#error-handling)
 - [Versioning](#versioning)
 - [Development](#development)
+  - [Prerequisites](#prerequisites)
   - [Building](#building)
   - [Testing](#testing)
+  - [TODO](#todo)
 - [Authors](#authors)
 - [License](#license)
 
@@ -174,6 +176,16 @@ After completing the build script, you can run the test provided by OpenCV, and 
 # This repo's test
 npm test
 ```
+
+### TODO
+
+Checklist:
+
+- [ ]  Fix repo corruption issue after opencv build from yarn|npm build (cmake configuration error).
+- [ ]  Add support for `opencv.js` and `opencv.wasm` for electron.
+- [ ]  Add typescript definition files for different `opencv.js` configurations.
+- [ ]  Add build scripts for different configuration based on available opencv presets. Example : electron-wasm-core, electron-full, electron-core. Full list of presets can be found at [opencv-js-build-presets](https://github.com/opencv/opencv/blob/4.x/platforms/js/opencv_js.config.py).
+- [ ] Add perfomance tests based on the diffent configurations.
 
 ## Authors
 
