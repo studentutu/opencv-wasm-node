@@ -34,5 +34,9 @@ fi
 echo "Start build wasm. For any errors, please check ./logbuild.txt" >> ../loghere.txt
 emcmake python3 ./platforms/js/build_js.py ./build_wasm --clean_build_dir --build_wasm --build_doc --build_test --build_flags "-s WASM=1 -s WASM_ASYNC_COMPILATION=0 -s SINGLE_FILE=0 -s USE_PTHREADS=0 " | tee ../logbuild.txt
 
+# get exit code of last command
+exit_code=$?
+# lof exit code into log file
 echo "Finished build wasm" >> ../loghere.txt
-echo "0" >> ../loghere.txt
+
+echo $exit_code >> ../loghere.txt

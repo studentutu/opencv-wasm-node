@@ -4,7 +4,9 @@ FROM emscripten/emsdk:latest
 # Update package lists
 RUN apt-get update && \
     apt-get install -y build-essential curl && \
-    apt-get install -y --no-install-recommends wget unzip git python3 doxygen
+    apt-get install -y --no-install-recommends wget unzip git python3 doxygen nodejs npm
+
+RUN npm install -g typescript
 
 # Define volume as main directory
 VOLUME /my_files
