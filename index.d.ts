@@ -6,6 +6,8 @@ export * as OpenCV from './types/opencv';
  */
 export declare const cv: typeof OpenCV;
 
+export default cv;
+
 /**
  * Translate error number from OpenCV into a meaningful message
  * @param cvObject OpenCV object

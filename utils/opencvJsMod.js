@@ -1,5 +1,6 @@
 // @ts-check
-
+// This script modifies opencv.js so that it would automaticly be initialized ( no need to initialize opencv manually).
+// We still need to initialize wams binary file manually and link it to opencv.js
 const fs = require('fs');
 const path = require('path');
 

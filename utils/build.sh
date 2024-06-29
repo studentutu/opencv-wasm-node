@@ -1,8 +1,12 @@
 #!/bin/bash
+# assume you are in ./utils folder
+
+# this script is used to copy build from ./utils/opencv/build_wasm to ./utils and modify opencv.js. Result is copied to root folder
+
+#debug
 # set -e
 set -x  # Enable script debugging for logging
 
-# assume you are in ./utils folder
 
 # Copy compilation result
 echo "Copying build_wasm to root"

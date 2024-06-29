@@ -1,10 +1,12 @@
 #!/bin/bash
+# assume you are running in ./utils
 
-# stop if any error
+# this script is used to build and run docker container for opencv locally. Result is stored in ./utils/opencv/build_wasm
+
+# debug
 # set -e
 # set -x  # Enable script debugging for logging
 
-# assume you are running in ./utils
 # check if opencv is already cloned
 if [ ! -d "./opencv" ]; then
     git clone --branch 4.10.0 --depth 1 https://github.com/opencv/opencv.git
@@ -80,3 +82,9 @@ docker system prune -a -f
 docker volume prune -f
 
 echo "Container finished with exit code" "$last_line"
+
+# check if build was successful with file at ./optncv/build_wasm/bin/opencv_js.js
+if [ ! -f "./opencv/build_wasm/bin/opencv_js.js" ]; then
+    echo "Build failed, please check ./logbuild.txt"
+    exit 1
+fi
