@@ -2,7 +2,7 @@
 
 Precompiled OpenCV to (JavaScript + WebAssembly) for node.js and web environment.
 
-To use it in your project, please use NPM link.
+To use it in your project, please use NPM link. See [UsaInstallationge](#installation) section for more details.
 
 Generally wasm will run slower and will have fewer available API (wasm limitation) compared to the native OpenCV. But it's a good option if you want to run OpenCV on the web.
 
@@ -120,7 +120,7 @@ You can check the files inside [examples](https://github.com/echamudi/opencv-was
 By default, mistakes in code will produce error code. You can use the following snippet to translate the error code into meaningful statement from OpenCV.
 
 ```js
-const { cv, cvTranslateError } = require('@studentutu/opencv-wasm');
+const { cv, cvTranslateError } = require('opencv-wasm-node');
 
 try {
     // Your OpenCV code
@@ -190,12 +190,16 @@ npm test
 
 Checklist:
 
-- [ ]  Fix repo corruption issue after opencv build from yarn|npm build (cmake configuration error).
-- [ ]  Add typescript definition files for different `opencv.js` configurations.
-- [ ]  Add support for `opencv.js` and `opencv.wasm` for electron.
-- [ ]  Add npm dry-run script for testing as well as npm publish script.
-- [ ]  Add build scripts for different configuration based on available opencv presets. Example : electron-wasm-core, electron-full, electron-core. Full list of presets can be found at [opencv-js-build-presets](https://github.com/opencv/opencv/blob/4.x/platforms/js/opencv_js.config.py).
-- [ ] Add perfomance tests based on the diffent configurations.
+- [x]   Add docker build image in order to build opencv from source. Helpful for building opencv on windows as we have docker UI on windows and we can run image in sandbox mode (docker run ... sleep infinity).
+- [x]   Fix missing npm build script.
+- [x]   Fix missing npm generateTypes script and test generated types (edit: types are alsmost useless as they are simple variables with comments on top of it).
+- [x]   Fix missing npm test script and test it.
+- [ ]   Fix repo corruption issue after opencv build from yarn|npm build (cmake configuration error).
+- [ ]   Add typescript definition files for different `opencv.js` configurations. Generate types from Doxygen XML (xml2typescript).
+- [ ]   Add support for `opencv.js` and `opencv.wasm` for electron.
+- [ ]   Add npm dry-run script for testing as well as npm publish script.
+- [ ]   Add build scripts for different configuration based on available opencv presets. Example : electron-wasm-core, electron-full, electron-core. Full list of presets can be found at [opencv-js-build-presets](https://github.com/opencv/opencv/blob/4.x/platforms/js/opencv_js.config.py).
+- [ ]   Add perfomance tests based on the different configurations.
 
 ## Authors
 
