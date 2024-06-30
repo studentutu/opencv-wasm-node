@@ -41,16 +41,25 @@ See build section for more details.
 
 ### node
 
+Currently, this module is not published on NPM. You can install it only from repo.
+
+Use this command on the repo from the root folder:
+
 ``` bash
-npm install @studentutu/opencv-wasm
+npm link
 ```
 
-Code example:
+This will link the module 'opencv-wasm-node' globally.
+Install it into your project with the following code:
+
+``` bash
+npm link opencv-wasm-node
+```
+
+Code example in node environment:
 
 ```js
-const { cv: cvLoader, cvTranslateError } = require('@studentutu/opencv-wasm');
-const Module = {};
-const cv = cvLoader(Module);
+const { cv, cvTranslateError } = require('opencv-wasm-node');
 
 let mat = cv.matFromArray(2, 3, cv.CV_8UC1, [1, 2, 3, 4, 5, 6]);
 console.log('cols =', mat.cols, '; rows =', mat.rows);
@@ -100,7 +109,7 @@ getBinaryPromise('./opencv_js.wasm').then((wasmBinary) => {
 
 ## Usage
 
-Because this module is using the same code as the official OpenCV.js for the web, you can use the same documentation at the web: <https://docs.opencv.org/4.10.0/d5/d10/tutorial_js_root.html>
+Because this module is using the similar code as the official OpenCV.js for the web, you can use the documentation at the web: <https://docs.opencv.org/4.10.0/d5/d10/tutorial_js_root.html> or build opencv with generated documentation using build script.
 
 There are some minor initialization changes, because this module will be loaded synchronously instead of the OpenCV's default (asynchronously).
 
@@ -161,7 +170,7 @@ npm run test or yarn test
 Please note that after each build, you need to manually remove opencv repo folder (currently not supported running multiple builds with different options).
 To do this, run `rm -rf ./utils/opencv` from the root of this repo or delete folder manually.
 
-Actual build script for opencv is located at `./utils/docker_wasm_build.sh`.
+Actual opencv build script for is located at `./utils/docker_wasm_build.sh`.
 For more build options, please check `./utils/readme.md`.
 
 ### Testing
@@ -182,14 +191,16 @@ npm test
 Checklist:
 
 - [ ]  Fix repo corruption issue after opencv build from yarn|npm build (cmake configuration error).
-- [ ]  Add support for `opencv.js` and `opencv.wasm` for electron.
 - [ ]  Add typescript definition files for different `opencv.js` configurations.
+- [ ]  Add support for `opencv.js` and `opencv.wasm` for electron.
+- [ ]  Add npm dry-run script for testing as well as npm publish script.
 - [ ]  Add build scripts for different configuration based on available opencv presets. Example : electron-wasm-core, electron-full, electron-core. Full list of presets can be found at [opencv-js-build-presets](https://github.com/opencv/opencv/blob/4.x/platforms/js/opencv_js.config.py).
 - [ ] Add perfomance tests based on the diffent configurations.
 
 ## Authors
 
 - **Ezzat Chamudi** - [echamudi](https://github.com/echamudi)
+- **Roman Fedorov** - [studentutu](https://github.com/studentutu)
 
 See also the list of [contributors](https://github.com/echamudi/opencv-wasm/graphs/contributors) who participated in this project.
 
