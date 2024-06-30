@@ -19,7 +19,7 @@ See build section for more details.
 - [Installation](#installation)
   - [node](#node)
   - [Using in the browser](#using-in-the-browser)
-- [Usage](#usage)
+- [Documentation](#documentation)
 - [Error Handling](#error-handling)
 - [Versioning](#versioning)
 - [Development](#development)
@@ -77,6 +77,20 @@ Int8Array(6) [ 1, 4, 2, 5, 3, 6 ]
 */
 ```
 
+When finished with the project, don't forget to remove the link.
+
+Remove the link from your project with the following command:
+
+``` bash
+npm unlink opencv-wasm-node
+```
+
+Navigate to the repo root folder and run the following command:
+
+``` bash
+npm unlink -g
+```
+
 ## Using in the browser
 
 ``` html
@@ -107,7 +121,7 @@ getBinaryPromise('./opencv_js.wasm').then((wasmBinary) => {
 </script> 
 ```
 
-## Usage
+## Documentation
 
 Because this module is using the similar code as the official OpenCV.js for the web, you can use the documentation at the web: <https://docs.opencv.org/4.10.0/d5/d10/tutorial_js_root.html> or build opencv with generated documentation using build script.
 
